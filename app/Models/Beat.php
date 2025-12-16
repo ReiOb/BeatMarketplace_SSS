@@ -11,6 +11,8 @@ class Beat extends Model
         'description',
         'file_path',
         'is_sold',
+        'bpm',
+        'key',
     ];
 
     protected $casts = [

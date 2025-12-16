@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Beat;
@@ -10,6 +11,7 @@ class BeatController extends Controller
     public function index()
     {
         $beats = Beat::latest()->get();
+
         return view('beats.index', compact('beats'));
     }
 
@@ -26,15 +28,17 @@ class BeatController extends Controller
             'file'        => 'required|mimes:mp3,wav,ogg|max:20480',
         ]);
 
-        $path = $request->file('file')->store('beats', 'public'); // storage/app/public/beats
+        $path = $request->file('file')->store('beats', 'public');
 
         Beat::create([
             'title'       => $data['title'],
             'description' => $data['description'] ?? null,
             'file_path'   => $path,
+            'is_sold'     => false,
         ]);
 
-        return redirect()->route('beats.index');
+        return redirect()->route('beats.index')
+            ->with('status', 'Beat uploaded!');
     }
 
     public function edit(Beat $beat)
@@ -45,10 +49,10 @@ class BeatController extends Controller
     public function update(Request $request, Beat $beat)
     {
         $data = $request->validate([
-            'title'       => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'is_sold'     => 'sometimes|boolean',
-        ]);
+    'title'       => 'required|string|max:255',
+    'description' => 'nullable|string',
+    'file'        => 'required|file', // temporarily
+]);
 
         $beat->update([
             'title'       => $data['title'],
@@ -56,7 +60,8 @@ class BeatController extends Controller
             'is_sold'     => $request->boolean('is_sold'),
         ]);
 
-        return redirect()->route('beats.index');
+        return redirect()->route('beats.index')
+            ->with('status', 'Beat updated!');
     }
 
     public function destroy(Beat $beat)
@@ -64,6 +69,7 @@ class BeatController extends Controller
         Storage::disk('public')->delete($beat->file_path);
         $beat->delete();
 
-        return redirect()->route('beats.index');
+        return redirect()->route('beats.index')
+            ->with('status', 'Beat deleted!');
     }
 }

@@ -12,8 +12,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('file_path');      // path to mp3 in storage
+            $table->string('file_path');           // storage path to mp3
             $table->boolean('is_sold')->default(false);
+            $table->unsignedSmallInteger('bpm')->nullable();
+            $table->string('key', 10)->nullable();
             $table->timestamps();
         });
     }
