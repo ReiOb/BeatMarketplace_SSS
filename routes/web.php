@@ -17,3 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+use App\Http\Controllers\BeatController;
+
+Route::resource('beats', BeatController::class);
+Route::get('/', fn () => redirect()->route('beats.index'));
