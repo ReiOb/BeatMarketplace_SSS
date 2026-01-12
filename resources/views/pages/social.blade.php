@@ -13,15 +13,27 @@
                 </p>
 
                 <div class="list-group">
-                    <a href="https://twitter.com" target="_blank" rel="noopener" class="list-group-item list-group-item-action">
+                    <a href="https://x.com/fruktovics" target="_blank" rel="noopener" class="list-group-item list-group-item-action">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <h6 class="mb-1">
-                                    <i class="bi bi-twitter"></i> Twitter / X
+                                    <i class="bi bi-twitter"></i> Developer's Twitter / X
                                 </h6>
-                                <p class="text-muted small mb-0">@beatmarketplace</p>
+                                <p class="text-muted small mb-0">@fruktovics</p>
                             </div>
                             <span class="badge bg-primary">Follow</span>
+                        </div>
+                    </a>
+
+                    <a href="https://soundcloud.com/brukc" target="_blank" rel="noopener" class="list-group-item list-group-item-action">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">
+                                    <i class="bi bi-soundwave"></i> Developer's SoundCloud Profile
+                                </h6>
+                                <p class="text-muted small mb-0">@brukc</p>
+                            </div>
+                            <span class="badge bg-danger">Follow :] </span>
                         </div>
                     </a>
 
@@ -31,7 +43,7 @@
                                 <h6 class="mb-1">
                                     <i class="bi bi-instagram"></i> Instagram
                                 </h6>
-                                <p class="text-muted small mb-0">@beatmarketplace</p>
+                                <p class="text-muted small mb-0">@reinis_obuhovics</p>
                             </div>
                             <span class="badge bg-danger">Follow</span>
                         </div>
@@ -67,7 +79,7 @@
                                 <h6 class="mb-1">
                                     <i class="bi bi-envelope"></i> Email
                                 </h6>
-                                <p class="text-muted small mb-0">hello@beatmarketplace.com</p>
+                                <p class="text-muted small mb-0">beatmarket@mail.com</p>
                             </div>
                             <span class="badge bg-secondary">Contact</span>
                         </div>
@@ -79,7 +91,7 @@
                 <h5 class="mb-3">Community</h5>
                 <p class="text-muted">
                     Join thousands of producers and musicians sharing beats and collaborating.
-                    Have questions? Want to report a bug? Reach out to us anytime—we'd love to hear from you!
+                    Have questions? Want to report a bug? Reach out to us anytime, and we'd love to hear from you!
                 </p>
 
                 <a href="mailto:support@beatmarketplace.com" class="btn btn-outline-primary">

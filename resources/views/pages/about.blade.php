@@ -46,7 +46,10 @@
                 <h5 class="mt-4 mb-3">Get Started</h5>
                 <p>
                     Ready to share your beats? Head to the
-                    <a href="{{ route('beats.index') }}">Beats page</a> and upload your first track!
+                    <a href="{{ route('beats.index') }}">Main page</a> and upload your first track!
+                </p>
+                <p>
+                    Created By Reinis Obuhovičs &copy; {{ date('Y') }}
                 </p>
             </div>
         </div>

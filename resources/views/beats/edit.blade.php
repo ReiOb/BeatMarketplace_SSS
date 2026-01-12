@@ -47,7 +47,7 @@
                             {{ old('is_sold', $beat->is_sold) ? 'checked' : '' }}
                         >
                         <label class="form-check-label" for="is_sold">
-                            Mark as sold
+                            Mark as SOLD
                         </label>
                     </div>
 

@@ -1,69 +1,70 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Beat Marketplace</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- Bootstrap CSS --}}
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+        <title>{{ config('app.name', 'Beat Marketplace') }}</title>
 
-    
-</head>
-<body class="bg-light">
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <div class="container">
-        <a class="navbar-brand" href="{{ route('beats.index') }}">
-            Beat Marketplace
-        </a>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('beats.*') ? 'active' : '' }}"
-                       href="{{ route('beats.index') }}">
-                        Beats
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
-                       href="{{ route('about') }}">
-                        About
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('social') ? 'active' : '' }}"
-                       href="{{ route('social') }}">
-                        Social
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+        <!-- Wavesurfer.js -->
+        <script src="https://unpkg.com/wavesurfer.js@7"></script>
 
-<main class="container mb-5">
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
+        <style>
+            body {
+                background-color: #e9c9a4;
+                padding-top: 0px; 
+            }
+            
+            
+            main {
+                min-height: calc(100vh - 60px);
+                padding-bottom: 60px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+        @include('layouts.navigation')
 
-    @yield('content')
-</main>
+        <!-- Page Content -->
+        <main class="container">
+            @if (session('status'))
+                <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+                    {{ session('status') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
+                    <strong>Validation Error!</strong>
+                    <ul class="mb-0 mt-2">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
 
-<script src="https://unpkg.com/wavesurfer.js@7"></script>
+            @yield('content')
+        </main>
 
-@stack('scripts')
-</body>
+        <!-- Bootstrap JS Bundle (includes Popper for dropdowns) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Stack for additional scripts -->
+        @stack('scripts')
+    </body>
 </html>
