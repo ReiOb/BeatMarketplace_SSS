@@ -9,15 +9,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('beats', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->string('file_path');           // storage path to mp3
-            $table->boolean('is_sold')->default(false);
-            $table->unsignedSmallInteger('bpm')->nullable();
-            $table->string('key', 10)->nullable();
-            $table->timestamps();
-        });
+    $table->id();
+    $table->foreignId('user_id')->constrained()->onDelete('cascade');
+    $table->string('title');
+    $table->text('description')->nullable();
+    $table->string('audio_path');  
+    $table->string('genre')->nullable();
+    $table->integer('bpm')->nullable();
+    $table->decimal('price', 8, 2)->nullable();
+    $table->boolean('is_sold')->default(false);
+    $table->integer('play_count')->default(0);
+    $table->timestamps();
+    $table->softDeletes();
+});
     }
 
     public function down(): void

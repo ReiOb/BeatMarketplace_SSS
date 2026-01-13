@@ -6,19 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up(): void
+    public function up()
     {
         Schema::table('beats', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->unsignedInteger('play_count')->default(0);
+            $table->dropColumn('file_path');
         });
     }
 
-    public function down(): void
+    public function down()
     {
         Schema::table('beats', function (Blueprint $table) {
-            $table->dropForeignIdFor(\App\Models\User::class);
-            $table->dropColumn('play_count');
+            $table->string('file_path')->nullable();
         });
     }
 };

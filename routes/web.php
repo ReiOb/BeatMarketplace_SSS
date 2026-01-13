@@ -32,8 +32,10 @@ Route::view('/social', 'pages.social')->name('social');
 // Breeze Auth Routes (login, register, password reset, profile edit)
 require __DIR__.'/auth.php';
 
-Route::post('/beats/{beat}/play', function (\App\Models\Beat $beat) {
-    $beat->increment('play_count');
-    return response()->json(['play_count' => $beat->play_count]);
-})->name('beats.play');
+Route::post('/beats/{beat}/play', [BeatController::class, 'play'])->name('beats.play');
+
+Route::middleware('auth')->group(function () {
+    Route::resource('beats', BeatController::class);
+    Route::post('/beats/{beat}/play', [BeatController::class, 'play'])->name('beats.play');
+});
 
